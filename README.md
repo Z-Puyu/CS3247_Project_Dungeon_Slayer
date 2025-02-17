@@ -36,6 +36,8 @@
 
 - We use [Jira](https://zpyzhangpuyu.atlassian.net/jira/software/projects/CS3247/boards/1) for team management.
 
+- Create a Jira issue for **every piece of work** and let Jira track your commits.
+
 - Jira issue types:
 
   - **Feature**: Ideas/suggestions for new features.
