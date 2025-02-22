@@ -15,7 +15,7 @@ class CS3247_PROJECT_API UCardEffectDamage : public UCardEffect {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(Categories="DamageTypes"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(Categories="Damage"))
 	FGameplayTag DamageType;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
