@@ -15,7 +15,7 @@ class CS3247_PROJECT_API UCardEffect : public UDataAsset {
 
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
-	int32 UseCost = 0;
+	double UseCost = 0;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
 	int32 CraftCost = 0;
