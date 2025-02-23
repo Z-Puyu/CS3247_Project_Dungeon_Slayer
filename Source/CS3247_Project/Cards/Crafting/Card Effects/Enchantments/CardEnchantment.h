@@ -14,6 +14,6 @@ class CS3247_PROJECT_API UCardEnchantment : public UDataAsset {
 	GENERATED_BODY()
 
 public:
-	UFUNCTION()
-	virtual TSoftObjectPtr<UCardEffect> Enchant(TSoftObjectPtr<UCardEffect> Effect);
+	UFUNCTION(BlueprintCallable)
+	virtual UCardEffect* Enchant(UCardEffect* Effect);
 };

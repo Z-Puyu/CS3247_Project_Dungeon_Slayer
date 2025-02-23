@@ -21,6 +21,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
 	int32 CraftCost = 0;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	virtual UCardEffect* Apply();
 };

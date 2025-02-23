@@ -3,6 +3,6 @@
 
 #include "CardEnchantment.h"
 
-TSoftObjectPtr<UCardEffect> UCardEnchantment::Enchant(TSoftObjectPtr<UCardEffect> Effect) {
+UCardEffect* UCardEnchantment::Enchant(UCardEffect* Effect) {
 	return Effect;	
 }
