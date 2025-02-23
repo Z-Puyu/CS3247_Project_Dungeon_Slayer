@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "../CardEffect.h"
+#include "../CardIngredient.h"
 #include "CardEnchantment.generated.h"
 
 /**
  * 
  */
 UCLASS(Abstract)
-class CS3247_PROJECT_API UCardEnchantment : public UDataAsset {
+class CS3247_PROJECT_API UCardEnchantment : public UCardIngredient {
 	GENERATED_BODY()
 
 public:

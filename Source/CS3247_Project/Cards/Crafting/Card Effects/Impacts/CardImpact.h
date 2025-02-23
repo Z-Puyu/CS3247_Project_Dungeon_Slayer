@@ -4,23 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "../CardEffect.h"
+#include "../CardIngredient.h"
 #include "Engine/DataAsset.h"
 #include "CardImpact.generated.h"
 
 /**
  * 
  */
-UCLASS(Abstract, EditInlineNew, DefaultToInstanced, CollapseCategories)
-class CS3247_PROJECT_API UCardImpact : public UDataAsset {
+UCLASS(Abstract)
+class CS3247_PROJECT_API UCardImpact : public UCardIngredient {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
-	double UseCost = 0;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
-	int32 CraftCost = 0;
-
 	UFUNCTION(BlueprintCallable)
 	virtual UCardEffect* Apply();
 };
