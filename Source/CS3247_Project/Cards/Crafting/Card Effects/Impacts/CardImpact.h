@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CardEffectData.h"
+#include "../CardEffect.h"
 #include "Engine/DataAsset.h"
 #include "CardImpact.generated.h"
 
@@ -22,5 +22,5 @@ public:
 	int32 CraftCost = 0;
 
 	UFUNCTION()
-	virtual TSoftObjectPtr<UCardEffect> Apply();
+	virtual UCardEffect* Apply();
 };

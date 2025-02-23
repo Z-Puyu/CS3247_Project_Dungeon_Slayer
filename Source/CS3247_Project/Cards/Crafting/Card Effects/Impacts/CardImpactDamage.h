@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "CardImpact.h"
 #include "GameplayTagContainer.h"
+#include "../CardEffect.h"
 #include "CardImpactDamage.generated.h"
 
 /**
@@ -20,7 +21,6 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int32 Value;
-
-	UFUNCTION()
-	virtual TSoftObjectPtr<UCardEffect> Apply() override;
+	
+	virtual UCardEffect* Apply() override;
 };

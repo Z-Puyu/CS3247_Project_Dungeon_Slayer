@@ -15,11 +15,13 @@ class CS3247_PROJECT_API UCardEffect : public UObject {
 	GENERATED_BODY()
 
 public:
+	UCardEffect();
+	
 	UPROPERTY(BlueprintReadOnly)
-	TMap<FGameplayTag, int> Damages = {};
+	TMap<FGameplayTag, int> Damages;
 
 	UPROPERTY(BlueprintReadOnly)
-	int HealAmount = 0;
+	int HealAmount;
 
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayTagContainer SpecialEffects;

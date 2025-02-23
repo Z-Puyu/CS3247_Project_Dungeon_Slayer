@@ -3,7 +3,7 @@
 
 #include "CardImpact.h"
 
-UCardEffect UCardImpact::Apply() {
-	return UCardEffect();
+UCardEffect* UCardImpact::Apply() {
+	return NewObject<UCardEffect>();
 }
 

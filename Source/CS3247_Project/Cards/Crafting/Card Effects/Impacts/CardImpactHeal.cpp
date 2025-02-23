@@ -3,8 +3,8 @@
 
 #include "CardImpactHeal.h"
 
-TSoftObjectPtr<UCardEffect> UCardImpactHeal::Apply() {
-	TSoftObjectPtr<UCardEffect> Data = Super::Apply();
-	Data.Get()->HealAmount += this->Value;
+UCardEffect* UCardImpactHeal::Apply() {
+	UCardEffect* Data = Super::Apply();
+	Data->HealAmount += this->Value;
 	return Data;
 }

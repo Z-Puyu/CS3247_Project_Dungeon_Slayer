@@ -3,12 +3,12 @@
 
 #include "CardImpactDamage.h"
 
-TSoftObjectPtr<UCardEffect> UCardImpactDamage::Apply() {
-	TSoftObjectPtr<UCardEffect> Data = Super::Apply();
-	if (Data.Get()->Damages.Contains(this->DamageType)) {
-		Data.Get()->Damages[this->DamageType] += this->Value;
+UCardEffect* UCardImpactDamage::Apply() {
+	UCardEffect* Data = Super::Apply();
+	if (Data->Damages.Contains(this->DamageType)) {
+		Data->Damages[this->DamageType] += this->Value;
 	} else {
-		Data.Get()->Damages.Add(this->DamageType, this->Value);
+		Data->Damages.Add(this->DamageType, this->Value);
 	}
 	return Data;
 }

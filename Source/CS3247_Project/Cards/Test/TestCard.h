@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CS3247_Project/Cards/Crafting/Card Effects/CardImpact.h"
+#include "../Crafting/Card Effects/Enchantments/CardEnchantment.h"
+#include "../Crafting/Card Effects/Impacts/CardImpact.h"
 #include "Engine/DataAsset.h"
 #include "TestCard.generated.h"
 
@@ -15,6 +16,9 @@ class CS3247_PROJECT_API UTestCard : public UDataAsset {
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TArray<TSoftObjectPtr<UCardEnchantment>> Enchantments;
+	
 	UPROPERTY(Instanced, EditDefaultsOnly, BlueprintReadOnly, meta=(AllowAbstract))
-	TObjectPtr<UCardImpact> Effect;
+	TObjectPtr<UCardImpact> Impact;
 };
