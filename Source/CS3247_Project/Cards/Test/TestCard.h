@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CS3247_Project/Cards/Crafting/Card Effects/CardEffect.h"
+#include "CS3247_Project/Cards/Crafting/Card Effects/CardImpact.h"
 #include "Engine/DataAsset.h"
 #include "TestCard.generated.h"
 
@@ -16,5 +16,5 @@ class CS3247_PROJECT_API UTestCard : public UDataAsset {
 
 public:
 	UPROPERTY(Instanced, EditDefaultsOnly, BlueprintReadOnly, meta=(AllowAbstract))
-	TObjectPtr<UCardEffect> Effect;
+	TObjectPtr<UCardImpact> Effect;
 };

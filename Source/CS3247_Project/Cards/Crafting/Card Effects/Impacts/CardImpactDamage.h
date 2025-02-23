@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CardEffect.h"
+#include "CardImpact.h"
 #include "GameplayTagContainer.h"
-#include "CardEffectDamage.generated.h"
+#include "CardImpactDamage.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class CS3247_PROJECT_API UCardEffectDamage : public UCardEffect {
+class CS3247_PROJECT_API UCardImpactDamage : public UCardImpact {
 	GENERATED_BODY()
 
 public:
@@ -20,4 +20,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int32 Value;
+
+	UFUNCTION()
+	virtual TSoftObjectPtr<UCardEffect> Apply() override;
 };
