@@ -3,10 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Crafting/Card Effects/EffectBlock.h"
 #include "UObject/NoExportTypes.h"
-#include "Cards.generated.h"
 #include "Crafting/Card Effects/Enchantments/CardEnchantment.h"
 #include "Crafting/Card Effects/Impacts/CardImpact.h"
+#include "Cards.generated.h"
 
 #define DURABILITYCOEFFICIENT 100.0
 /**
@@ -22,7 +23,7 @@ public:
 
 	int Cost;
 	int Durability;
-	TMap<UCardImpact, TArray<UCardEnchantment>> Effects;
+	TArray<TSoftObjectPtr<UEffectBlock>> Effects;
 	
 	UFUNCTION(BlueprintCallable)
 	int GetCost() { return this->Cost; };
@@ -35,12 +36,10 @@ public:
 	void SetCost()
 	{
 		int Total = 0;
-		for (TTuple<UCardImpact, TArray<UCardEnchantment>> Elem : this->Effects) {
-			Total += Elem.Key.UseCost;
-			for (UCardEnchantment Enchantment : Elem.Value) {
-				Total += Enchantment.UseCost;
-			}
+		for (TSoftObjectPtr<UEffectBlock> Elem : this->Effects) {
+			Total += Elem.Get()->GetCost();
 		}
+		Cost = Total;
 	}
 
 	// To be called on creation of a card. Sets the initial durability of it.
@@ -48,11 +47,8 @@ public:
 	void SetDurability()
 	{
 		int Total = 0;
-		for (TTuple<UCardImpact, TArray<UCardEnchantment>> Elem : this->Effects) {
-			Total += Elem.Key.CraftCost;
-			for (UCardEnchantment Enchantment : Elem.Value) {
-				Total += Enchantment.CraftCost;
-			}
+		for (TSoftObjectPtr<UEffectBlock> Elem : this->Effects) {
+			Total += Elem.Get()->GetCraftCost();
 		}
 		this->Durability = static_cast<int>(std::max(ceil(DURABILITYCOEFFICIENT / static_cast<float>(Total)), 1.0));
 	}
@@ -63,12 +59,9 @@ public:
 	{
 		this->Durability -= 1;
 		TArray<UCardEffect*> Effects;
-		for (TTuple<UCardImpact, TArray<UCardEnchantment>> Elem : this->Effects) {
-			UCardEffect *Effect = Elem.Key.Apply();
-			for (UCardEnchantment Enchantment : Elem.Value) {
-				Effect = Enchantment.Enchant(Effect);
-			}
-			Effects.Add(Effect);
+		for (TSoftObjectPtr<UEffectBlock> Elem : this->Effects)
+		{
+			Effects.Add(Elem.Get()->Use());
 		}
 		return Effects;
 	};
