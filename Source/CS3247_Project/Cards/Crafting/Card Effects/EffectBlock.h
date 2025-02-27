@@ -19,8 +19,8 @@ class CS3247_PROJECT_API UEffectBlock : public UObject
 public:
     UEffectBlock()
     {
-	    //this->SetCost();
-    	//this->SetCraftCost();
+	    this->SetCost();
+    	this->SetCraftCost();
     };
 
 	int Cost;
@@ -34,7 +34,7 @@ public:
 		for (TSoftObjectPtr<UCardEnchantment> Elem : this->Enchantments) {
 			Total += Elem.Get()->UseCost;
 		}
-		// Total += this->Impact.Get()->UseCost;
+		Total += this->Impact.Get()->UseCost;
 		this->Cost = Total;
 	}
 

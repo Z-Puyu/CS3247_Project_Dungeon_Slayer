@@ -26,10 +26,10 @@ public:
 	TArray<TSoftObjectPtr<UEffectBlock>> Effects;
 	
 	UFUNCTION(BlueprintCallable)
-	int GetCost() const { return this->Cost; };
+	int GetCost() { return this->Cost; };
 
 	UFUNCTION(BlueprintCallable)
-	int GetDurability() const { return this->Durability; };
+	int GetDurability() { return this->Durability; };
 
 	// To be called on creation of a card. Sets the energy cost of it.
 	UFUNCTION(BlueprintCallable)
@@ -58,11 +58,11 @@ public:
 	TArray<UCardEffect*> Use()
 	{
 		this->Durability -= 1;
-		TArray<UCardEffect*> CardEffects;
+		TArray<UCardEffect*> Effects;
 		for (TSoftObjectPtr<UEffectBlock> Elem : this->Effects)
 		{
-			CardEffects.Add(Elem.Get()->Use());
+			Effects.Add(Elem.Get()->Use());
 		}
-		return CardEffects;
+		return Effects;
 	};
 };
