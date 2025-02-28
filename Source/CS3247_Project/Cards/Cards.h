@@ -58,11 +58,11 @@ public:
 	TArray<UCardEffect*> Use()
 	{
 		this->Durability -= 1;
-		TArray<UCardEffect*> Effects;
+		TArray<UCardEffect*> CardEffects;
 		for (TSoftObjectPtr<UEffectBlock> Elem : this->Effects)
 		{
-			Effects.Add(Elem.Get()->Use());
+			CardEffects.Add(Elem.Get()->Use());
 		}
-		return Effects;
+		return CardEffects;
 	};
 };
