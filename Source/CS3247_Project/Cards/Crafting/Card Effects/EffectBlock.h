@@ -17,11 +17,7 @@ class CS3247_PROJECT_API UEffectBlock : public UObject
 	GENERATED_BODY()
 
 public:
-    UEffectBlock()
-    {
-	    this->SetCost();
-    	this->SetCraftCost();
-    };
+    UEffectBlock();
 
 	int Cost;
 	int CraftCost;
