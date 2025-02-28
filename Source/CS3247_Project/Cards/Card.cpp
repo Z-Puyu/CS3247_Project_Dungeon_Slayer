@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Cards.h"
+#include "Card.h"
 
-UCards::UCards() {}
+UCard::UCard() {}
