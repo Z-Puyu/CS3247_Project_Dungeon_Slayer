@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS(Abstract)
+UCLASS(Abstract, BlueprintType)
 class CS3247_PROJECT_API UCardIngredient : public UDataAsset {
 	GENERATED_BODY()
 	

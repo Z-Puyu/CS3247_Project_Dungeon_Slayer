@@ -5,14 +5,14 @@
 #include "CoreMinimal.h"
 #include "Enchantments/CardEnchantment.h"
 #include "Impacts/CardImpact.h"
-#include "UObject/NoExportTypes.h"
+#include "../../../UI/Texts/RichTextRepresentable.h"
 #include "EffectBlock.generated.h"
 
 /**
  * 
  */
-UCLASS()
-class CS3247_PROJECT_API UEffectBlock : public UObject {
+UCLASS(BlueprintType)
+class CS3247_PROJECT_API UEffectBlock : public UObject, public IRichTextRepresentable {
 	GENERATED_BODY()
 
 public:
@@ -29,6 +29,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCardEffect* GetEffect();
+
+	UFUNCTION(BlueprintCallable)
+	virtual FString ToRichText() const override;
 
 private:
 	TWeakObjectPtr<UCardImpact> Impact;

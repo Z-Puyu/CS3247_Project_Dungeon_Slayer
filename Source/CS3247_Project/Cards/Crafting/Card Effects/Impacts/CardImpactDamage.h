@@ -23,4 +23,9 @@ public:
 	int32 Value;
 	
 	virtual UCardEffect* Apply() override;
+
+	virtual FString ToRichText() const override;
+
+private:
+	FString GetDamageType() const;
 };

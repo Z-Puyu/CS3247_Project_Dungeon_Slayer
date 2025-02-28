@@ -36,3 +36,7 @@ UCardEffect* UEffectBlock::GetEffect() {
 	return CardEffect;
 }
 
+FString UEffectBlock::ToRichText() const {
+	return this->Impact->ToRichText();
+}
+
