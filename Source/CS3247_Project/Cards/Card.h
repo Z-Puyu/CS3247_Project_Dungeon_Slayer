@@ -16,6 +16,18 @@ class CS3247_PROJECT_API UCard : public UObject, public ITextDescribable {
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(ExposeOnSpawn))
+	FText Name;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(ExposeOnSpawn))
+	int Cost;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(ExposeOnSpawn))
+	int Durability;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(ExposeOnSpawn))
+	TArray<UEffectBlock*> Effects;
+	
 	UCard();
 
 	UFUNCTION(BlueprintCallable)
@@ -23,16 +35,4 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void GetCardInfo(FText& CardName, FText& Desc, int& UseCost, int& CardDurability, TArray<UEffectBlock*>& CardEffects) const;
-
-	UFUNCTION(BlueprintCallable)
-	UCard* WithData(const FText& CardName, const int UseCost, const int CardDurability, const TArray<UEffectBlock*>& CardEffects);
-private:
-	FText Name;
-	
-	int Cost;
-	
-	int Durability;
-
-	UPROPERTY()
-	TArray<UEffectBlock*> Effects;
 };

@@ -27,11 +27,3 @@ void UCard::GetCardInfo(FText& CardName, FText& Desc, int& UseCost, int& CardDur
 	CardEffects = this->Effects;
 }
 
-UCard* UCard::WithData(const FText& CardName, const int UseCost, const int CardDurability, const TArray<UEffectBlock*>& CardEffects) {
-	this->Name = CardName;
-	this->Cost = UseCost;
-	this->Durability = CardDurability;
-	this->Effects = CardEffects;
-	return this;
-}
-

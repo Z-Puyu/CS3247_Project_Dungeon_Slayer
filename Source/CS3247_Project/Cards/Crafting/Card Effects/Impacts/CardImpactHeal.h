@@ -15,7 +15,7 @@ class CS3247_PROJECT_API UCardImpactHeal : public UCardImpact {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 Value;
 	
 	virtual UCardEffect* Apply() override;

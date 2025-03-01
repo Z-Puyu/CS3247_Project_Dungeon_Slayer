@@ -16,7 +16,7 @@ class CS3247_PROJECT_API UCardNode : public UDataAsset {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ExposeOnSpawn))
 	UCardIngredient* Ingredient;
 
 	UPROPERTY(Instanced, EditAnywhere, BlueprintReadOnly)
