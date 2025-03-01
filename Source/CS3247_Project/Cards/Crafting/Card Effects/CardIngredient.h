@@ -14,9 +14,18 @@ class CS3247_PROJECT_API UCardIngredient : public UDataAsset {
 	GENERATED_BODY()
 	
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Basic Info")
+	FText Name;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Basic Info")
+	FText Desc;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Basic Info")
+	TSoftObjectPtr<UTexture2D> Icon;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
-	double UseCost = 0;
+	double UseCost;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Cost")
-	int32 CraftCost = 0;
+	int32 CraftCost;
 };
