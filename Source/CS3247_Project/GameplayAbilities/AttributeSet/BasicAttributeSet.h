@@ -19,8 +19,14 @@ UCLASS()
 class CS3247_PROJECT_API UBasicAttributeSet : public UAttributeSet {
 	GENERATED_BODY()
 
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes", meta=(AllowPrivateAccess="true"))
-	FGameplayAttributeData Health;
+public:
 	ATTRIBUTE_ACCESSORS(UBasicAttributeSet, Health)
+	ATTRIBUTE_ACCESSORS(UBasicAttributeSet, MaxHealth)
+	
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData MaxHealth;
 };

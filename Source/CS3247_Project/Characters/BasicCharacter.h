@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystemInterface.h"
 #include "BasicCharacter.generated.h"
 
 UCLASS()
-class CS3247_PROJECT_API ABasicCharacter : public ACharacter {
+class CS3247_PROJECT_API ABasicCharacter : public ACharacter, public IAbilitySystemInterface {
 	GENERATED_BODY()
 
 public:
@@ -21,6 +22,10 @@ protected:
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	FORCEINLINE virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override {
+		return AbilitySystemComponent;
+	}
 
 public:
 	// Called every frame

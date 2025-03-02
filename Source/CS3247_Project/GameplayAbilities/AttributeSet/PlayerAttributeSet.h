@@ -13,8 +13,14 @@ UCLASS()
 class CS3247_PROJECT_API UPlayerAttributeSet : public UBasicAttributeSet {
 	GENERATED_BODY()
 
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes", meta = (AllowPrivateAccess = "true"))
-	FGameplayAttributeData Mana;
+public:
 	ATTRIBUTE_ACCESSORS(UPlayerAttributeSet, Mana)
+	ATTRIBUTE_ACCESSORS(UPlayerAttributeSet, MaxMana)
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData Mana;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData MaxMana;
 };

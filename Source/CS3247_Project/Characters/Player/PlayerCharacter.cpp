@@ -13,7 +13,10 @@ APlayerCharacter::APlayerCharacter() {
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay() {
 	Super::BeginPlay();
-	this->AttributeSet = this->AbilitySystemComponent->GetSet<UPlayerAttributeSet>();
+	const UAbilitySystemComponent* AbilitySystem = this->GetAbilitySystemComponent();
+	if (IsValid(AbilitySystem)) {
+		this->AttributeSet = AbilitySystem->GetSet<UPlayerAttributeSet>();
+	}
 }
 
 // Called every frame
