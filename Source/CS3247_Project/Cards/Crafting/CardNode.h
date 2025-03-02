@@ -39,6 +39,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool IsReadyToCraft() const { return this->IsTerminal() || this->Successors.Num() > 0; }
+
+	UFUNCTION(BlueprintCallable)
+	UCardNode* GetRoot();
 private:
 	UPROPERTY()
 	UCardNode* Predecessor;

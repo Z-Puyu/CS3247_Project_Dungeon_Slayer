@@ -82,3 +82,11 @@ TArray<UEffectBlock*> UCardNode::Build() {
 	
 	return Blocks;
 }
+
+UCardNode* UCardNode::GetRoot() {
+	if (!IsValid(this->Predecessor)) {
+		return this;
+	}
+
+	return this->Predecessor->GetRoot();
+}
