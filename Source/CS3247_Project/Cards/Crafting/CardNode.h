@@ -19,8 +19,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ExposeOnSpawn))
 	UCardIngredient* Ingredient;
 
-	UPROPERTY(Instanced, EditAnywhere, BlueprintReadOnly)
-	TArray<UCardNode*> Successors;
+	UFUNCTION(BlueprintCallable)
+	bool AddSuccessor(UCardNode* Node);
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE bool Precedes(UCardNode* Node) const { return Node->Predecessor == this; }
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE bool Succeeds(UCardNode* Node) const { return this->Predecessor == Node; }
+
+	UFUNCTION(BlueprintCallable)
+	bool BreakLinkWith(UCardNode* Node);
+
+	UFUNCTION(BlueprintCallable)
+	int CountBuildableConnectedNodes();
 
 	UFUNCTION(BlueprintCallable)
 	TArray<UEffectBlock*> Build();
@@ -28,6 +40,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool IsReadyToCraft() const { return this->IsTerminal() || this->Successors.Num() > 0; }
 private:
+	UPROPERTY()
+	UCardNode* Predecessor;
+	
+	TSet<UCardNode*> Successors;
+	
 	FORCEINLINE bool IsTerminal() const {
 		return this->Ingredient->IsA(UCardImpact::StaticClass()) &&
 			this->Successors.Num() == 0;
