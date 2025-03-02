@@ -11,7 +11,7 @@ UCard::UCard() {
 
 FText UCard::GetDescription() const {
 	TStringBuilder<256> Sb = TStringBuilder<256>();
-	for (const UEffectBlock* Effect : this->Effects) {
+	for (auto& Effect : this->Effects) {
 		Sb.Appendf(TEXT("%s\n"), *Effect->ToRichText());
 	}
 	

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DamageData.h"
 #include "GameplayTagContainer.h"
 #include "UObject/Object.h"
 #include "CardEffect.generated.h"
@@ -16,40 +17,16 @@ class CS3247_PROJECT_API UCardEffect : public UObject {
 
 public:
 	UCardEffect();
+
+	UPROPERTY(BlueprintReadOnly)
+	FDamageData BaseDamage;
 	
-	int Multiplier;
-	TMap<FGameplayTag, int> Damages;
-	TMap<FGameplayTag, int> MagicEnchantments;
-	int HealAmount;
+	UPROPERTY(BlueprintReadOnly)
+	TMap<FGameplayTag, FDamageData> ExtraDamageEffects;
+
+	UPROPERTY(BlueprintReadOnly)
+	double HealAmount;
 
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayTagContainer SpecialEffects;
-
-	UFUNCTION(BlueprintCallable)
-	int GetDamage(const FGameplayTag DamageType) {
-		if (this->Damages.Contains(DamageType)) {
-			return this->Damages[DamageType] * this->GetMultiplier();
-		} else {
-			return 0;
-		}
-	}
-
-	UFUNCTION(BlueprintCallable)
-	int GetMagicEnchantment(const FGameplayTag EnchantmentType) {
-		if (this->MagicEnchantments.Contains(EnchantmentType)) {
-			return this->MagicEnchantments[EnchantmentType] * this->GetMultiplier();
-		} else {
-			return 0;
-		}
-	}
-
-	UFUNCTION(BlueprintCallable)
-	int GetHealAmount() const {
-		return this->HealAmount * this->GetMultiplier();
-	}
-
-private:
-	double GetMultiplier() const {
-		return this->Multiplier / 100.0;
-	}
 };

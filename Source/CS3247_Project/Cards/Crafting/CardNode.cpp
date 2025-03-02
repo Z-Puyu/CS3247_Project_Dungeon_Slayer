@@ -48,7 +48,7 @@ int UCardNode::CountBuildableConnectedNodes() {
 			Queue.Enqueue(this->Predecessor);
 		}
         	
-		for (UCardNode* Successor : Curr->Successors) {
+		for (auto& Successor : Curr->Successors) {
 			if (!Visited.Contains(Successor)) {
 				Queue.Enqueue(Successor);
 			}
@@ -60,15 +60,15 @@ int UCardNode::CountBuildableConnectedNodes() {
 
 TArray<UEffectBlock*> UCardNode::Build() {
 	if (this->IsTerminal()) {
-		return {NewObject<UEffectBlock>()->WithImpact(Cast<UCardImpact>(this->Ingredient))};
+		return {NewObject<UEffectBlock>(this)->WithImpact(Cast<UCardImpact>(this->Ingredient))};
 	}
 
 	TArray<UEffectBlock*> Blocks = {};
 	
 	if (this->Ingredient->IsA(UCardEnchantment::StaticClass())) {
 		UCardEnchantment* Enchantment = Cast<UCardEnchantment>(this->Ingredient);
-		for (UCardNode* Successor : this->Successors) {
-			for (UEffectBlock* Block : Successor->Build()) {
+		for (const auto& Successor : this->Successors) {
+			for (const auto& Block : Successor->Build()) {
 				Blocks.Add(Block->Append(Enchantment));
 			}
 		}
@@ -76,7 +76,7 @@ TArray<UEffectBlock*> UCardNode::Build() {
 		return Blocks;
 	}
 
-	for (UCardNode* Successor : this->Successors) {
+	for (const auto& Successor : this->Successors) {
 		Blocks.Append(Successor->Build());
 	}
 	

@@ -20,7 +20,7 @@ UEffectBlock* UEffectBlock::Append(UCardEnchantment* Enchantment) {
 }
 
 UEffectBlock* UEffectBlock::AppendAll(const TArray<UCardEnchantment*> CardEnchantments) {
-	for (UCardEnchantment* Enchantment : CardEnchantments) {
+	for (auto& Enchantment : CardEnchantments) {
 		this->Append(Enchantment);
 	}
 
@@ -29,7 +29,7 @@ UEffectBlock* UEffectBlock::AppendAll(const TArray<UCardEnchantment*> CardEnchan
 
 UCardEffect* UEffectBlock::GetEffect() {
 	UCardEffect* CardEffect = this->Impact->Apply();
-	for (UCardEnchantment* Enchantment : this->Enchantments) {
+	for (auto& Enchantment : this->Enchantments) {
 		CardEffect = Enchantment->Enchant(CardEffect);
 	}
 
