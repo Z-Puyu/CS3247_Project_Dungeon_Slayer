@@ -19,7 +19,7 @@ public:
 	
 	FDamageData(const FGameplayTag DamageType, const double DamageValue) :
 		DamageType(DamageType), DamageValue(DamageValue) {}
-
+	
 	FString ToString() const;
 
 	FString ToRichText() const;
