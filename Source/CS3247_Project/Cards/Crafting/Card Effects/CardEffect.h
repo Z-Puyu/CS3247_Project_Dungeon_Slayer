@@ -5,14 +5,15 @@
 #include "CoreMinimal.h"
 #include "DamageData.h"
 #include "GameplayTagContainer.h"
+#include "../../../UI/Texts/RichTextRepresentable.h"
 #include "UObject/Object.h"
 #include "CardEffect.generated.h"
 
 /**
  * 
  */
-UCLASS()
-class CS3247_PROJECT_API UCardEffect : public UObject {
+UCLASS(BlueprintType)
+class CS3247_PROJECT_API UCardEffect : public UObject, public IRichTextRepresentable {
 	GENERATED_BODY()
 
 public:
@@ -25,8 +26,11 @@ public:
 	TMap<FGameplayTag, FDamageData> ExtraDamageEffects;
 
 	UPROPERTY(BlueprintReadOnly)
-	double HealAmount;
+	float HealAmount;
 
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayTagContainer SpecialEffects;
+
+	UFUNCTION(BlueprintCallable)
+	virtual FString ToRichText() const override;
 };

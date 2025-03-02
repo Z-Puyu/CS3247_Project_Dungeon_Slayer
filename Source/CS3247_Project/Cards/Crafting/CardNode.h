@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Card Effects/CardEffect.h"
 #include "Card Effects/CardIngredient.h"
-#include "Card Effects/EffectBlock.h"
+#include "Card Effects/Impacts/CardImpact.h"
 #include "UObject/Object.h"
 #include "CardNode.generated.h"
 
@@ -35,7 +36,7 @@ public:
 	int CountBuildableConnectedNodes();
 
 	UFUNCTION(BlueprintCallable)
-	TArray<UEffectBlock*> Build();
+	TArray<UCardEffect*> Build();
 
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE bool IsReadyToCraft() const { return this->IsTerminal() || this->Successors.Num() > 0; }

@@ -2,6 +2,8 @@
 
 
 #include "CardNode.h"
+#include "Card Effects/Enchantments/CardEnchantment.h"
+
 bool UCardNode::AddSuccessor(UCardNode* Node) {
 	if (IsValid(Node->Predecessor) || this->Successors.Contains(Node)) {
 		return false;
@@ -58,29 +60,29 @@ int UCardNode::CountBuildableConnectedNodes() {
 	return Count;
 }
 
-TArray<UEffectBlock*> UCardNode::Build() {
+TArray<UCardEffect*> UCardNode::Build() {
 	if (this->IsTerminal()) {
-		return {NewObject<UEffectBlock>(this)->WithImpact(Cast<UCardImpact>(this->Ingredient))};
+		return {Cast<UCardImpact>(this->Ingredient)->Apply()};
 	}
 
-	TArray<UEffectBlock*> Blocks = {};
+	TArray<UCardEffect*> CardEffects = {};
 	
 	if (this->Ingredient->IsA(UCardEnchantment::StaticClass())) {
 		UCardEnchantment* Enchantment = Cast<UCardEnchantment>(this->Ingredient);
 		for (const auto& Successor : this->Successors) {
-			for (const auto& Block : Successor->Build()) {
-				Blocks.Add(Block->Append(Enchantment));
+			for (const auto& CardEffect : Successor->Build()) {
+				CardEffects.Add(Enchantment->Enchant(CardEffect));
 			}
 		}
 		
-		return Blocks;
+		return CardEffects;
 	}
 
 	for (const auto& Successor : this->Successors) {
-		Blocks.Append(Successor->Build());
+		CardEffects.Append(Successor->Build());
 	}
 	
-	return Blocks;
+	return CardEffects;
 }
 
 UCardNode* UCardNode::GetRoot() {

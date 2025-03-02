@@ -2,6 +2,7 @@
 
 
 #include "Card.h"
+#include "Crafting/Card Effects/CardEffect.h"
 
 UCard::UCard() {
 	this->Cost = 0;
@@ -19,7 +20,7 @@ FText UCard::GetDescription() const {
 }
 
 void UCard::GetCardInfo(FText& CardName, FText& Desc, int& UseCost, int& CardDurability,
-	TArray<UEffectBlock*>& CardEffects) const {
+	TArray<UCardEffect*>& CardEffects) const {
 	CardName = this->Name;
 	Desc = this->GetDescription();
 	UseCost = this->Cost;

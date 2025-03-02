@@ -19,6 +19,10 @@ public:
 	
 	FDamageData(const FGameplayTag DamageType, const double DamageValue) :
 		DamageType(DamageType), DamageValue(DamageValue) {}
+
+	FString ToString() const;
+
+	FString ToRichText() const;
 	
 	FDamageData operator+ (const double Offset) const; 
 
@@ -31,4 +35,16 @@ public:
 	FDamageData operator-= (const double Value) const;
 
 	FDamageData operator*= (const double Value) const;
+
+	bool operator> (const int Value) const;
+
+	bool operator< (const int Value) const;
+
+	bool operator== (const int Value) const;
+
+	bool operator!= (const int Value) const;
+
+	bool operator>= (const int Value) const;
+
+	bool operator<= (const int Value) const;
 };
